@@ -34,7 +34,17 @@ steps:
     projects: '**/BattleshipTest/*.csproj'
 
 - task: DotNetCoreCLI@2
+  displayName: Publish
   inputs:
     command: 'publish'
     publishWebProjects: false
     projects: '**/Battleship/*.csproj'
+
+- task: AzureRmWebAppDeployment@4
+  displayName: Deploy
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Pay-As-You-Go (177e5286-95f0-4f3d-ab71-ba742256fa4f)'
+    appType: 'apiApp'
+    WebAppName: 'GregBattleshipAPI'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
