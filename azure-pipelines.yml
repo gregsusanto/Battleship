@@ -22,11 +22,19 @@ steps:
     restoreSolution: '$(solution)'
 
 - task: DotNetCoreCLI@2
+  displayName: Build
   inputs:
     command: 'build'
-    projects: '/Battleship'
+    projects: '**/Battleship/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: 'test'
+    projects: '**/BattleshipTest/*.csproj'
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'test'
-    projects: '/BattleshipTest'
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/Battleship/*.csproj'
