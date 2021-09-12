@@ -27,7 +27,7 @@ namespace Battleship.Controllers
             _boardService = boardService;
         }
 
-        [HttpPost("Create")]
+        [HttpPost]
         public IActionResult CreateBoard()
         {
             try
@@ -41,7 +41,7 @@ namespace Battleship.Controllers
             }
         }
 
-        [HttpPost("AddShip")]
+        [HttpPost("Ship")]
         public IActionResult AddShip([FromBody]AddShipRequest addShipRequest)
         {
             if (addShipRequest == null || addShipRequest.Coordinates == null)
@@ -77,6 +77,5 @@ namespace Battleship.Controllers
             }
         }
     }
-
 
 }
